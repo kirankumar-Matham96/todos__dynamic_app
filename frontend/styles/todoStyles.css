@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Caveat:wght@400;700&family=Lobster&family=Monoton&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display+SC:ital,wght@0,400;0,700;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,700&family=Work+Sans:ital,wght@0,400;0,700;1,700&display=swap');
+
+.todos-bg-container {
+	background-color: #f9fbfe;
+	min-height: 100vh;
+	/* overflow: hidden; */
+}
+
+/* .first-row {
+    background-color: #f9fbfe;
+    height: 20%;
+    border: 1px solid red;
+} */
+
+/* .second-row {
+    margin-top: 60%;
+    border: 1px solid green;
+    height: 80%;
+    overflow-y: scroll;
+} */
+
+.bg-container {
+	padding-bottom: 100px;
+}
+
+.todos-heading {
+	text-align: center;
+	font-family: 'Roboto';
+	font-size: 46px;
+	font-weight: 700;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.create-task-heading {
+	font-family: 'Roboto';
+	font-size: 32px;
+	font-weight: 700;
+}
+
+.create-task-heading-subpart {
+	font-family: 'Roboto';
+	font-size: 32px;
+	font-weight: 500;
+}
+
+.todo-items-heading {
+	font-family: 'Roboto';
+	font-size: 32px;
+	font-weight: 700;
+}
+
+.todo-items-heading-subpart {
+	font-family: 'Roboto';
+	font-size: 32px;
+	font-weight: 500;
+}
+
+.todo-items-container {
+	margin: 0px;
+	padding: 0px;
+}
+
+.todo-item-container {
+	margin-top: 15px;
+}
+
+.todo-user-input {
+	background-color: white;
+	width: 100%;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #e4e7eb;
+	border-radius: 10px;
+	margin-top: 10px;
+	padding: 15px;
+}
+
+/* .add-todo-button { */
+.button {
+	color: white;
+	background-color: #4c63b6;
+	font-family: 'Roboto';
+	font-size: 18px;
+	border-width: 0px;
+	border-radius: 4px;
+	margin-top: 20px;
+	margin-bottom: 50px;
+	padding: 5px 20px 5px 20px;
+}
+
+.label-container {
+	background-color: #e6f6ff;
+	width: 100%;
+	border-style: solid;
+	border-width: 5px;
+	border-color: #096f92;
+	border-right: none;
+	border-top: none;
+	border-bottom: none;
+	border-radius: 4px;
+}
+
+.checkbox-input {
+	width: 20px;
+	height: 20px;
+	margin-top: 12px;
+	margin-right: 12px;
+}
+
+.checkbox-input-after-checked {
+	background-color: #fff;
+	color: black;
+}
+
+.checkbox-label {
+	font-family: 'Roboto';
+	font-size: 16px;
+	font-weight: 400;
+	width: 82%;
+	margin: 0px;
+	padding: 10px 20px 10px 20px;
+	/* border-radius: 5px; */
+}
+
+.strike-through {
+	color: rgba(255, 255, 255, 0.5);
+	text-decoration: line-through;
+}
+
+.show-text-icon {
+	color: black;
+}
+
+.show-text-icon:active .strike-through {
+	text-decoration: none; /* This one not working as expected*/
+}
+
+.delete-icon-container {
+	text-align: right;
+	width: 18%;
+}
+
+.delete-icon {
+	padding: 15px;
+}
+
+.save-button {
+	position: fixed;
+	bottom: 0px;
+	left: 15px;
+	left: 35px;
+	z-index: 1;
+}
+
+.help-button {
+	position: fixed;
+	bottom: 45px;
+	right: 25px;
+	z-index: 2;
+	height: 50px;
+	width: 50px;
+	border-radius: 25px;
+	background-color: #007bff;
+	color: white;
+	border: none;
+	box-shadow: black 0px 0px 15px 0px;
+}
+
+.help-section {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	z-index: 1;
+	height: 500px;
+	width: 250px;
+	min-width: 250px;
+	border: 2px solid lightblue;
+	padding: 10px;
+	background-color: black;
+	color: white;
+	border-radius: 25px;
+	overflow-y: scroll;
+}
