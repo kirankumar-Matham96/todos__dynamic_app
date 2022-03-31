@@ -3,8 +3,11 @@ let todoItemsContainer = document.getElementById('todoItemsContainer');
 let todoItemsUncheckedContainer = document.createElement('div');
 let todoItemsCheckedContainer = document.createElement('div');
 let checkedTitle = document.createElement('h2');
+let checkedItemsCount = 0; // for counting the items   <-- need to store it in the local storage
+let uncheckedItemsCount = 0; // for counting the items <-- need to store it in the local storage
 
 checkedTitle.textContent = 'Completed';
+// checkedTitle.textContent;
 checkedTitle.classList.add('todo-items-heading-subpart', 'mt-5');
 
 todoItemsCheckedContainer.appendChild(checkedTitle);
@@ -47,8 +50,12 @@ function onStatusChange(inputElement, label, iconContainer, icon, idNumber) {
 	let checked = todoList[idNumber].isChecked;
 	if (checked === true) {
 		todoList[idNumber].isChecked = false;
+		uncheckedItemsCount++;
+		checkedItemsCount--;
 	} else {
 		todoList[idNumber].isChecked = true;
+		checkedItemsCount++;
+		uncheckedItemsCount--;
 	}
 }
 
@@ -70,8 +77,18 @@ function deleteListItem(childToRemove) {
 		todoList.splice(index, 1);
 		if (todoItemsUncheckedContainer.contains(childToRemove)) {
 			todoItemsUncheckedContainer.removeChild(childToRemove);
+			uncheckedItemsCount--;
+			if (uncheckedItemsCount) {
+				console.log('There are no tasks to do!');
+			}
 		} else if (todoItemsCheckedContainer.contains(childToRemove)) {
 			todoItemsCheckedContainer.removeChild(childToRemove);
+			checkedItemsCount--;
+			if (checkedItemsCount === 0) {
+				checkedTitle.textContent = '';
+			} else {
+				checkedTitle.textContent = 'Completed';
+			}
 		}
 	}
 	// ...
@@ -228,8 +245,10 @@ function createAndAppendTodo(topic, idNumber) {
 		iconContainer.style.backgroundColor = '#000';
 		showTextIconContainer.style.backgroundColor = '#000';
 		todoItemsCheckedContainer.appendChild(todoElement);
+		checkedItemsCount++;
 	} else {
 		todoItemsUncheckedContainer.appendChild(todoElement);
+		uncheckedItemsCount++;
 	}
 	// ...
 	// todoItemsContainer.appendChild(todoElement);
