@@ -154,7 +154,7 @@ function selectARandomBackgroundColorForLabelElement(
 		}
 		previousNumberSelected = numberSelected;
 		return colors[numberSelected];
-	} else if (importanceOfTask === 'vImportant') {
+	} else if (importanceOfTask === 'very important') {
 		return veryImportantColor;
 	} else if (importanceOfTask === 'important') {
 		return importantColor;
@@ -195,7 +195,7 @@ function createAndAppendTodo(topic, idNumber) {
 	let label = document.createElement('label');
 	label.classList.add('checkbox-label');
 	let backgroundColorForLabelAndIconContainers =
-		selectARandomBackgroundColorForLabelElement();
+		selectARandomBackgroundColorForLabelElement(topic.importance);
 	label.style.backgroundColor =
 		topic.bgColor || backgroundColorForLabelAndIconContainers; //<---- update after adding priority options to the tasks.
 	// label.style.color = "#dee2ff";
@@ -347,11 +347,14 @@ function addingNewTask() {
 	// resetting input to empty
 	document.getElementById('todoUserInput').value = '';
 
-	// resetting importance
+	// new feature: resetting importance
+	// ***
 	veryImportant.checked = false;
 	important.checked = false;
 	general.checked = true;
 	optional.checked = false;
+	importance = 'general';
+	// ...
 }
 //
 
