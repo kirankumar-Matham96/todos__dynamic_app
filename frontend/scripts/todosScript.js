@@ -5,8 +5,30 @@ let todoItemsCheckedContainer = document.createElement('div');
 let checkedTitle = document.createElement('h2');
 let checkedItemsCount = 0; // for counting the items   <-- need to store it in the local storage
 let uncheckedItemsCount = 0; // for counting the items <-- need to store it in the local storage
-
 checkedTitle.textContent = 'Completed';
+
+let importance = 'general';
+let veryImportant = document.getElementById('vimp');
+let important = document.getElementById('imp');
+let general = document.getElementById('general');
+let optional = document.getElementById('optional');
+
+veryImportant.addEventListener('change', (event) => {
+	importance = event.target.value;
+});
+
+important.addEventListener('change', (event) => {
+	importance = event.target.value;
+});
+
+general.addEventListener('change', (event) => {
+	importance = event.target.value;
+});
+
+optional.addEventListener('change', (event) => {
+	importance = event.target.value;
+});
+
 // checkedTitle.textContent;
 checkedTitle.classList.add('todo-items-heading-subpart', 'mt-5');
 
@@ -174,7 +196,8 @@ function createAndAppendTodo(topic, idNumber) {
 	label.classList.add('checkbox-label');
 	let backgroundColorForLabelAndIconContainers =
 		selectARandomBackgroundColorForLabelElement();
-	label.style.backgroundColor = backgroundColorForLabelAndIconContainers; //<---- update after adding priority options to the tasks.
+	label.style.backgroundColor =
+		topic.bgColor || backgroundColorForLabelAndIconContainers; //<---- update after adding priority options to the tasks.
 	// label.style.color = "#dee2ff";
 	// label.style.color = "#b5e48c";
 	// label.style.color = "#583101";
@@ -210,7 +233,7 @@ function createAndAppendTodo(topic, idNumber) {
 		'show-text-icon'
 	);
 	showTextIconContainer.style.backgroundColor =
-		backgroundColorForLabelAndIconContainers;
+		topic.bgColor || backgroundColorForLabelAndIconContainers;
 	labelContainer.appendChild(showTextIconContainer);
 	// ...
 
@@ -218,7 +241,7 @@ function createAndAppendTodo(topic, idNumber) {
 	let iconContainer = document.createElement('div');
 	iconContainer.classList.add('delete-icon-container');
 	iconContainer.style.backgroundColor =
-		backgroundColorForLabelAndIconContainers; //< ---- new feature
+		topic.bgColor || backgroundColorForLabelAndIconContainers; //< ---- new feature
 	labelContainer.appendChild(iconContainer);
 
 	// New feature: shows text when click and hold
@@ -275,6 +298,8 @@ function createAndAppendTodo(topic, idNumber) {
 	}
 	// ...
 	// todoItemsContainer.appendChild(todoElement);
+
+	return backgroundColorForLabelAndIconContainers;
 }
 
 // Adding new task function to create a new task whenever associated event triggered
@@ -296,6 +321,7 @@ function addingNewTask() {
 		let newObject = {
 			text: newTask,
 			isChecked: false,
+			importance: importance,
 			// createdAt: timestampForTaskCreated()
 			createdAt: Date().toString(),
 		};
@@ -306,15 +332,26 @@ function addingNewTask() {
 		// console.log(newObject);
 		// Solved: Don't know how, but suddenly it was working after logged it to the console.
 		// ...
-
 		todoList.push(newObject);
+
 		let idNumber = todoList.indexOf(newObject);
-		createAndAppendTodo(newObject, idNumber);
+		newObject.bgColor = createAndAppendTodo(newObject, idNumber);
+
+		todoList.pop();
+		todoList.push(newObject);
 	} else {
 		alert('Please enter a valid input');
 		return;
 	}
-	document.getElementById('todoUserInput').value = ''; // resetting input to empty
+
+	// resetting input to empty
+	document.getElementById('todoUserInput').value = '';
+
+	// resetting importance
+	veryImportant.checked = false;
+	important.checked = false;
+	general.checked = true;
+	optional.checked = false;
 }
 //
 
