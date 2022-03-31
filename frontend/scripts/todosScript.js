@@ -32,8 +32,16 @@ let todoList = getDataFromLocalStorage(); // calling function
 // console.log(todoList);
 
 // When status changed
-function onStatusChange(inputElement, label, iconContainer, icon, idNumber) {
-	label.classList.toggle('strike-through');
+function onStatusChange(
+	inputElement,
+	label,
+	textContainerForLabel,
+	iconContainer,
+	icon,
+	idNumber
+) {
+	// label.classList.toggle('strike-through');
+	textContainerForLabel.classList.toggle('strike-through');
 
 	// TODO: Trying to change checkbox style
 	//  ***
@@ -182,6 +190,13 @@ function createAndAppendTodo(topic, idNumber) {
 	textContainerForLabel.textContent = topic.text;
 	label.appendChild(textContainerForLabel);
 	// ...
+	// new feature: adding time of creation
+	// ***
+	let timeContainerForLabel = document.createElement('span');
+	timeContainerForLabel.style.color = 'rgb(255,255,255,0.4)';
+	timeContainerForLabel.textContent = topic.createdAt;
+	label.append(timeContainerForLabel);
+	// ...
 
 	labelContainer.appendChild(label);
 
@@ -236,11 +251,19 @@ function createAndAppendTodo(topic, idNumber) {
 	// ***
 	inputElement.onclick = function () {
 		// onStatusChange(inputElement, label, iconContainer, deleteIcon, idNumber);
-		onStatusChange(inputElement, label, iconContainer, icon, idNumber);
+		onStatusChange(
+			inputElement,
+			label,
+			textContainerForLabel,
+			iconContainer,
+			icon,
+			idNumber
+		);
 	};
 
 	if (isChecked) {
-		label.classList.add('strike-through');
+		// label.classList.add('strike-through');
+		textContainerForLabel.classList.add('strike-through');
 		label.style.backgroundColor = '#000';
 		iconContainer.style.backgroundColor = '#000';
 		showTextIconContainer.style.backgroundColor = '#000';
